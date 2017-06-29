@@ -1,0 +1,30 @@
+{
+  "name": "express-spin-off",
+  "version": "0.1.0",
+  "description": "An ExpressJS spin-off to start node APIs with a BANG!",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chimico/express-spin-off.git"
+  },
+  "author": "Chimico Albuquerque",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "helmet": "^3.6.1",
+    "method-override": "^2.3.9"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.5.2",
+    "editorconfig": "^0.13.2",
+    "eslint": "^4.1.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-eslint": "^4.0.0",
+    "gulp-nodemon": "^2.2.1"
+  }
+}
