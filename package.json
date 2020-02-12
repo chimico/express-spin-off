@@ -1,34 +1,36 @@
 {
   "name": "express-spin-off",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "An ExpressJS spin-off to start node APIs with a BANG!",
   "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/chimico/express-spin-off.git"
   },
-  "author": "Chimico Albuquerque",
+  "author": "Chimico de Albuquerque",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.17.2",
-    "express": "^4.15.3",
-    "helmet": "^3.6.1",
-    "method-override": "^2.3.9"
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "method-override": "^3.0.0",
+    "serve-static": "^1.14.1",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-eslint": "^7.2.3",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-env": "^1.5.2",
-    "babel-register": "^6.24.1",
-    "chai": "^4.0.2",
-    "chai-http": "^3.0.0",
-    "editorconfig": "^0.13.2",
-    "eslint": "^4.1.1",
-    "gulp": "^3.9.1",
+    "apidoc": "^0.20.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "dotenv": "^8.2.0",
+    "editorconfig": "^0.15.3",
+    "eslint": "^6.8.0",
+    "gulp": "^4.0.2",
+    "gulp-apidoc": "^0.2.8",
     "gulp-babel": "^6.1.2",
-    "gulp-eslint": "^4.0.0",
-    "gulp-nodemon": "^2.2.1",
-    "mocha": "^3.4.2"
+    "gulp-eslint": "^6.0.0",
+    "gulp-nodemon": "^2.4.2",
+    "mocha": "^7.0.1"
   }
 }

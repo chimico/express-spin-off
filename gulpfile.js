@@ -1,16 +1,25 @@
-var gulp = require('gulp');
-var babel = require('gulp-babel');
-var nodemon = require('gulp-nodemon');
-var eslint = require('gulp-eslint');
+const {
+  task: gulpTask,
+  series: gulpSeries,
+  src: gulpSource,
+  dest: gulpDest,
+  watch: gulpWatch
+} = require('gulp');
+const nodemon = require('gulp-nodemon');
+const eslint = require('gulp-eslint');
+const apidoc = require('gulp-apidoc');
 
-gulp.task('default', ['lint', 'nodemon-src']);
+gulpTask('lint', function() {
+  return gulpSource(['src/**/*.js'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
 
-gulp.task('debug-dist', ['list', 'build', 'nodemon-dist']);
-
-gulp.task('nodemon-dist', function() {
+gulpTask('nodemon-dist', function() {
   return nodemon({
     exec: 'node --inspect',
-    script: 'dist/api/bin/server.js',
+    script: 'dist/bin/server.js',
     watch: ['src/**/**/*'],
     tasks: ['build'],
     delay: 2000,
@@ -18,29 +27,34 @@ gulp.task('nodemon-dist', function() {
   });
 });
 
-gulp.task('build', function() {
-  return gulp.src(['src/api/**/*.js'], { base: 'src' })
-    .pipe(babel())
-    .pipe(gulp.dest('dist/'));
+gulpTask('build', function() {
+  return gulpSource(['src/**/*.js'], { base: 'src' })
+    .pipe(gulpDest('dist/'));
 });
 
-gulp.task('nodemon-src', function() {
+gulpTask('nodemon-src', function() {
   return nodemon({
-    exec: 'babel-node --inspect',
-    script: 'src/api/bin/server.js',
+    exec: 'node --inspect',
+    script: 'src/bin/server.js',
     watch: ['src/**/**/*'],
     tasks: ['lint'],
     delay: 2000,
   });
 });
 
-gulp.task('watch', function() {
-  return gulp.watch(['src/**/*.js'], ['lint']);
+gulpTask('apidoc', function(done) {
+  apidoc({
+    src: 'src/routes/',
+    dest: 'dist/docs/'
+  }, done);
 });
 
-gulp.task('lint', function() {
-  return gulp.src(['src/api/**/*.js'])
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+gulpTask('watch', function() {
+  return gulpWatch(['src/**/*.js'], gulpSeries(['lint']));
 });
+
+gulpTask('default', gulpSeries(['lint', 'nodemon-src']));
+
+gulpTask('debug-dist', gulpSeries(['lint', 'build', 'apidoc', 'nodemon-dist']));
+
+gulpTask('deploy', gulpSeries(['lint', 'build', 'apidoc']));
