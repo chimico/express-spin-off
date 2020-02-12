@@ -1,9 +1,9 @@
-import app from '../main.js';
+const app = require('../main.js');
 
 /**
  * Get port from environment and store in Express.
  */
-const port = normalizePort(process.env.PORT || '8000');
+const port = normalizePort(process.env.PORT || '80');
 app.set('port', port);
 
 /**
@@ -17,9 +17,9 @@ server.on('listening', onListening);
  * Normalize a port into a number, string, or false.
  */
 function normalizePort(val) {
-  const port = parseInt(val, 10);
+  const port = Number.parseInt(val, 10);
 
-  if (isNaN(port)) {
+  if (Number.isNaN(port)) {
     // named pipe
     return val;
   }
@@ -41,17 +41,17 @@ function onError(error) {
   }
 
   const bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+    ? `Pipe ${port}`
+    : `Port ${port}`;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges'); // eslint-disable-line no-console
+      console.error(`${bind} requires elevated privileges`); // eslint-disable-line no-console
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use'); // eslint-disable-line no-console
+      console.error(`${bind} is already in use`); // eslint-disable-line no-console
       process.exit(1);
       break;
     default:
@@ -65,7 +65,7 @@ function onError(error) {
 function onListening() {
   const addr = server.address();
   const bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  console.log('Listening on ' + addr.address + ' ' + bind); // eslint-disable-line no-console
+    ? `pipe ${addr}`
+    : `port ${addr.port}`;
+  console.log(`Listening on ${addr.address} ${bind}`); // eslint-disable-line no-console
 }
