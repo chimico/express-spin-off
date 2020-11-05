@@ -1,3 +1,9 @@
-FROM node:8.1-alpine
+FROM node:14-buster-slim
 
-RUN apk update && apk upgrade
+RUN apt-get update && apt-get upgrade -y
+
+COPY . /app
+
+WORKDIR /app
+
+RUN yarn install

@@ -2,7 +2,9 @@
   "name": "express-spin-off",
   "version": "0.2.0",
   "description": "An ExpressJS spin-off to start node APIs with a BANG!",
-  "scripts": {},
+  "scripts": {
+    "start": "node bin/server.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/chimico/express-spin-off.git"
