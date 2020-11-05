@@ -9,7 +9,7 @@ app.set('port', port);
 /**
  * Listen on provided port, on all network interfaces.
  */
-const server = app.listen(port, 'localhost');
+const server = app.listen(port, '0.0.0.0');
 server.on('error', onError);
 server.on('listening', onListening);
 
