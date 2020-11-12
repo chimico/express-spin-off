@@ -1,15 +1,16 @@
 const app = require('../main.js');
+const config = require('../config');
 
 /**
  * Get port from environment and store in Express.
  */
-const port = normalizePort(process.env.PORT || '80');
+const port = normalizePort(config.port || '80');
 app.set('port', port);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
-const server = app.listen(port, '0.0.0.0');
+const server = app.listen(port, config.hostname);
 server.on('error', onError);
 server.on('listening', onListening);
 
