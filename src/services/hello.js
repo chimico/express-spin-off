@@ -1,11 +1,13 @@
 class Hello {
-  constructor() {}
+  constructor() {
+    this.message = 'Hello from the API!';
+  }
 
   hello() {
     return [
       {
-        message: 'Hello from the API!'
-      }
+        message: this.message,
+      },
     ];
   }
 }

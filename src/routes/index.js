@@ -1,14 +1,14 @@
 const helloRouter = require('./hello.js');
 
-const notFoundRouter = function(req, res) {
+const notFoundRouter = function notFoundRouteTreatment(req, res) {
   return res.status(404).json({ message: 'This route does not exist!' });
 };
 
-const invalidRouter = function(req, res) {
+const invalidRouter = function invalidRouteTreatment(req, res) {
   return res.status(400).json({ message: 'This route is invalid!' });
 };
 
-module.exports = app => {
+module.exports = (app) => {
   /**
    * Set hello routes to "/v1/hello"
    */

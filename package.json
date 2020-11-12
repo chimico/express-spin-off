@@ -4,7 +4,8 @@
   "description": "An ExpressJS spin-off to start node APIs with a BANG!",
   "scripts": {
     "start": "node bin/server.js",
-    "lint": "gulp lint"
+    "lint": "gulp lint",
+    "dev": "gulp nodemon-src"
   },
   "repository": {
     "type": "git",
