@@ -18,7 +18,7 @@ gulpTask('lint', function() {
 
 gulpTask('nodemon-dist', function() {
   return nodemon({
-    exec: 'node --inspect',
+    exec: 'node --inspect -r dotenv/config',
     script: 'dist/bin/server.js',
     watch: ['src/**/**/*'],
     tasks: ['build'],
@@ -34,7 +34,7 @@ gulpTask('build', function() {
 
 gulpTask('nodemon-src', function() {
   return nodemon({
-    exec: 'node --inspect',
+    exec: 'node --inspect -r dotenv/config',
     script: 'src/bin/server.js',
     watch: ['src/**/**/*'],
     tasks: ['lint'],

@@ -1,17 +1,5 @@
 const app = require('../main.js');
-
-/**
- * Get port from environment and store in Express.
- */
-const port = normalizePort(process.env.PORT || '80');
-app.set('port', port);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-const server = app.listen(port, 'localhost');
-server.on('error', onError);
-server.on('listening', onListening);
+const config = require('../config');
 
 /**
  * Normalize a port into a number, string, or false.
@@ -31,6 +19,17 @@ function normalizePort(val) {
 
   return false;
 }
+
+/**
+ * Get port from environment and store in Express.
+ */
+const port = normalizePort(config.port);
+app.set('port', port);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+const server = app.listen(port, config.hostname);
 
 /**
  * Event listener for HTTP server "error" event.
@@ -69,3 +68,6 @@ function onListening() {
     : `port ${addr.port}`;
   console.log(`Listening on ${addr.address} ${bind}`); // eslint-disable-line no-console
 }
+
+server.on('error', onError);
+server.on('listening', onListening);
