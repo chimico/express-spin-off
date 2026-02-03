@@ -4,7 +4,7 @@ const api = require('../src/main.js');
 const Hello = require('../src/services/hello.js');
 
 chai.should();
-chai.use(chaiHttp);
+chai.use(chaiHttp.default);
 
 // Add global test actions
 describe('Hello', () => {
@@ -16,7 +16,7 @@ describe('Hello', () => {
  */
 describe('/GET hello', () => {
   it('should GET hello to all', done => {
-    chai.request(api)
+    chaiHttp.request.execute(api)
       .get('/v1/hello')
       .end((err, res) => {
         res.should.have.status(200);

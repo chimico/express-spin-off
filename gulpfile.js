@@ -1,21 +1,24 @@
+const path = require('path');
 const {
   task: gulpTask,
   series: gulpSeries,
   src: gulpSource,
   dest: gulpDest,
-  watch: gulpWatch
+  watch: gulpWatch,
 } = require('gulp');
 const nodemon = require('gulp-nodemon');
-const eslint = require('gulp-eslint');
-const apidoc = require('gulp-apidoc');
+const eslint = require('gulp-eslint-new');
+const apidoc = require('apidoc');
 
-gulpTask('lint', function() {
+gulpTask('lint', () => {
   return gulpSource(['src/**/*.js'])
-    .pipe(eslint())
+    .pipe(eslint({ fix: true }))
+    .pipe(eslint.fix())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
+// Run nodemon from the distribution folder
 gulpTask('nodemon-dist', function() {
   return nodemon({
     exec: 'node --inspect -r dotenv/config',
@@ -32,6 +35,7 @@ gulpTask('build', function() {
     .pipe(gulpDest('dist/'));
 });
 
+// Run nodemon from the source folder
 gulpTask('nodemon-src', function() {
   return nodemon({
     exec: 'node --inspect -r dotenv/config',
@@ -42,11 +46,12 @@ gulpTask('nodemon-src', function() {
   });
 });
 
-gulpTask('apidoc', function(done) {
-  apidoc({
-    src: 'src/routes/',
-    dest: 'dist/docs/'
-  }, done);
+gulpTask('apidoc', (done) => {
+  apidoc.createDoc({
+    src: path.resolve(__dirname, 'src/routes/'),
+    dest: path.resolve(__dirname, 'dist/docs/'),
+  });
+  done();
 });
 
 gulpTask('watch', function() {
