@@ -31,7 +31,7 @@
     "chai": "^6.2.2",
     "chai-http": "^5.1.2",
     "dotenv": "^17.2.3",
-    "editorconfig": "^3.0.1",
+    "editorconfig": "^3.0.2",
     "eslint": "^9.39.2",
     "eslint-plugin-import": "2.32.0",
     "globals": "^17.3.0",
